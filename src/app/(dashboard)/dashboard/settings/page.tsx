@@ -8,7 +8,7 @@ export default function SettingsPage() {
   const [toggleRules, setToggleRules] = useState({ pipelineGlow: true, registrationApi: true, auditLogs: false });
 
   return (
-    <div className="w-full max-w-5xl px-4 sm:px-6 md:px-10 py-6 md:py-8 space-y-6 animate-in fade-in duration-300">
+    <div className="w-full px-4 sm:px-6 md:px-10 py-6 md:py-8 space-y-8 animate-in fade-in duration-300">
       <FadeUp>
         <div>
           <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white">System Settings</h1>
