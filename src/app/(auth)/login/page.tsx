@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, Suspense } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -16,6 +16,24 @@ function LoginForm() {
   const [error, setError] = useState("");
   const [infoMessage, setInfoMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  // If already authenticated, redirect straight to dashboard
+  useEffect(() => {
+    async function checkExistingAuth() {
+      try {
+        const res = await fetch("/api/auth/session");
+        if (res.ok) {
+          const session = await res.json();
+          if (session?.user) {
+            router.replace("/dashboard");
+          }
+        }
+      } catch {
+        // Continue rendering login form
+      }
+    }
+    checkExistingAuth();
+  }, [router]);
 
   // Derive dynamic token expiration status triggers passed inside browser query parameters
   const sessionExpiredMessage =

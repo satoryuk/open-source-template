@@ -6,15 +6,26 @@ const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
   const isLoggedIn = !!req.auth;
-  const isDashboard = req.nextUrl.pathname.startsWith("/dashboard");
+  const { pathname } = req.nextUrl;
 
-  if (isDashboard && !isLoggedIn) {
+  // 1. Route alias: redirect /admin to /dashboard
+  if (pathname === "/admin" || pathname.startsWith("/admin/")) {
+    return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
+  }
+
+  // 2. Route protection: redirect unauthenticated users to /login
+  if (pathname.startsWith("/dashboard") && !isLoggedIn) {
     return NextResponse.redirect(new URL("/login", req.nextUrl));
+  }
+
+  // 3. Flow optimization: redirect already-authenticated users to /dashboard
+  if ((pathname === "/login" || pathname === "/register") && isLoggedIn) {
+    return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
   }
 
   return NextResponse.next();
 });
 
 export const config = {
-  matcher: ["/dashboard/:path*"],
+  matcher: ["/dashboard/:path*", "/login", "/register", "/admin/:path*"],
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
@@ -13,6 +13,24 @@ export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false); // Reactive password visibility hook state
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // If already authenticated, redirect straight to dashboard
+  useEffect(() => {
+    async function checkExistingAuth() {
+      try {
+        const res = await fetch("/api/auth/session");
+        if (res.ok) {
+          const session = await res.json();
+          if (session?.user) {
+            router.replace("/dashboard");
+          }
+        }
+      } catch {
+        // Continue rendering register form
+      }
+    }
+    checkExistingAuth();
+  }, [router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
