@@ -6,7 +6,7 @@ import { LayoutDashboard } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <header className="w-full border-b border-zinc-900 bg-zinc-950/60 backdrop-blur-md sticky top-0 z-50 px-4 md:px-8 py-4 flex items-center justify-between transition-all max-w-7xl mx-auto rounded-b-xl">
+    <header className="w-full border-b border-zinc-900 bg-zinc-950/60 backdrop-blur-md sticky top-0 z-50 px-4 sm:px-6 md:px-8 py-4 flex items-center justify-between transition-all max-w-7xl mx-auto rounded-b-xl">
       <div className="flex items-center gap-2 font-semibold text-white tracking-wide">
         <div className="w-7 h-7 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
           <LayoutDashboard size={15} />

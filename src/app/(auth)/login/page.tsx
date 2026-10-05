@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { motion } from "framer-motion";
-import { Mail, Lock, Eye, EyeOff, ArrowRight, Loader2, Sparkles } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, ArrowRight, Loader2 } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -39,11 +39,6 @@ export default function LoginPage() {
     }
   };
 
-  const handleFillDemo = () => {
-    setFormData({ email: "admin@template.com", password: "password123" });
-    setError("");
-  };
-
   return (
     <div className="flex items-center justify-center min-h-screen px-4">
       <motion.div
@@ -54,16 +49,6 @@ export default function LoginPage() {
       >
         <h2 className="text-2xl font-bold text-center text-white tracking-tight">Welcome Back</h2>
         <p className="text-zinc-500 text-sm text-center mt-2">Sign in to your template sandbox</p>
-
-        {/* Quick Demo Fill Button */}
-        <button
-          type="button"
-          onClick={handleFillDemo}
-          className="mt-4 w-full py-2 px-3 bg-emerald-500/10 border border-emerald-500/20 hover:bg-emerald-500/20 text-emerald-400 rounded-lg text-xs font-medium transition-all flex items-center justify-center gap-1.5 cursor-pointer"
-        >
-          <Sparkles size={14} />
-          <span>Fill Seed Admin Credentials (admin@template.com)</span>
-        </button>
 
         {error && (
           <motion.div

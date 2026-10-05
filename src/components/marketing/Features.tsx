@@ -13,13 +13,13 @@ export default function Features() {
   ];
 
   return (
-    <section id="features" className="space-y-12 scroll-mt-24">
+    <section id="features" className="w-full space-y-12 scroll-mt-24">
       <FadeUp className="text-center space-y-2">
         <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">Full-Stack Core Architecture</h2>
         <p className="text-zinc-500 text-xs md:text-sm max-w-md mx-auto">Everything you need to ship production apps securely configured out of the box.</p>
       </FadeUp>
 
-      <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+      <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 w-full">
         {techFeatures.map((feat, index) => {
           const Icon = feat.icon;
           return (

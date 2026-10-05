@@ -41,7 +41,7 @@ export default function Pricing() {
   ];
 
   return (
-    <section id="pricing" className="space-y-12 scroll-mt-24">
+    <section id="pricing" className="w-full space-y-12 scroll-mt-24">
       <FadeUp className="text-center space-y-4">
         <div className="space-y-2">
           <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">Flexible Project Tiers</h2>
@@ -77,7 +77,7 @@ export default function Pricing() {
         </div>
       </FadeUp>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto items-stretch">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full items-stretch">
         {pricingTiers.map((tier, idx) => (
           <FadeUp key={idx} delay={idx * 0.1} className="h-full">
             <div

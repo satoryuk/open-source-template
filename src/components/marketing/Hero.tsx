@@ -19,7 +19,7 @@ function GithubIcon({ className = "w-4 h-4" }: { className?: string }) {
 
 export default function Hero() {
   return (
-    <section className="flex flex-col items-center justify-center text-center space-y-6 max-w-3xl mx-auto pt-12">
+    <section className="w-full flex flex-col items-center justify-center text-center space-y-6 pt-12">
       <FadeUp>
         <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-800 rounded-full text-[11px] font-medium text-emerald-400 shadow-inner">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -27,14 +27,14 @@ export default function Hero() {
         </div>
       </FadeUp>
       
-      <FadeUp delay={0.05}>
+      <FadeUp delay={0.05} className="max-w-4xl mx-auto">
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-zinc-400 leading-[1.1]">
           Build your next SaaS <span className="text-emerald-400">10x faster</span>
         </h1>
       </FadeUp>
 
-      <FadeUp delay={0.1}>
-        <p className="text-zinc-400 text-sm md:text-lg max-w-xl mx-auto leading-relaxed">
+      <FadeUp delay={0.1} className="max-w-xl mx-auto">
+        <p className="text-zinc-400 text-sm md:text-lg leading-relaxed">
           Skip weeks of boilerplate configuration. A premium clone-ready template complete with modular Auth, MongoDB caching pipelines, and a mobile-ready dashboard.
         </p>
       </FadeUp>

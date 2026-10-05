@@ -23,7 +23,7 @@ export default function FAQ() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="space-y-12 max-w-4xl mx-auto scroll-mt-24">
+    <section id="faq" className="w-full space-y-12 scroll-mt-24">
       <FadeUp className="text-center space-y-2">
         <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">Frequently Asked Answers</h2>
         <p className="text-zinc-500 text-xs md:text-sm">
@@ -31,7 +31,7 @@ export default function FAQ() {
         </p>
       </FadeUp>
 
-      <div className="space-y-3">
+      <div className="space-y-3 w-full">
         {faqs.map((faq, idx) => {
           const isOpen = activeIndex === idx;
           return (

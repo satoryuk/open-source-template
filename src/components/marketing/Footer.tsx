@@ -18,8 +18,8 @@ function GithubIcon({ className = "w-4 h-4" }: { className?: string }) {
 
 export default function Footer() {
   return (
-    <footer className="w-full border-t border-zinc-900 bg-zinc-950/80 backdrop-blur-md px-4 md:px-8 py-8 mt-24">
-      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
+    <footer className="w-full border-t border-zinc-900 bg-zinc-950/80 backdrop-blur-md px-4 sm:px-6 md:px-8 py-8 mt-24">
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
         <div className="flex items-center gap-2">
           <div className="w-5 h-5 rounded-md bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
             <LayoutDashboard size={11} />
