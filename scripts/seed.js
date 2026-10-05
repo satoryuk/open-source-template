@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const { MongoClient } = require("mongodb");
+const bcrypt = require("bcryptjs"); // Bring in cryptography framework
 const fs = require("fs");
 const path = require("path");
 
@@ -23,10 +24,13 @@ async function run() {
     const db = client.db();
     const usersCollection = db.collection("users");
 
+    // 🔥 ENCRYPT SEED PASSWORD
+    const hashedPassword = await bcrypt.hash("password123", 12);
+
     const demoUser = {
       name: "Demo Developer",
       email: "admin@template.com",
-      password: "password123", 
+      password: hashedPassword, // Secure encryption saved here
       emailVerified: null,
       createdAt: new Date(),
     };
@@ -37,12 +41,20 @@ async function run() {
     if (!existing) {
       await usersCollection.insertOne(demoUser);
       console.log("\n=============================================");
-      console.log("🎉 Database initialized successfully!");
+      console.log("🎉 Database initialized with Secure Encryption successfully!");
       console.log(`👤 User: ${demoUser.email}`);
-      console.log(`🔑 Password: ${demoUser.password}`);
+      console.log(`🔑 Password: password123 (Stored as a safe hash string)`);
       console.log("=============================================\n");
     } else {
-      console.log("Base user 'admin@template.com' is already registered in this database collection.");
+      await usersCollection.updateOne(
+        { email: demoUser.email },
+        { $set: { password: hashedPassword, name: demoUser.name } }
+      );
+      console.log("\n=============================================");
+      console.log("🎉 Baseline user 'admin@template.com' updated with bcrypt hash successfully!");
+      console.log(`👤 User: ${demoUser.email}`);
+      console.log(`🔑 Password: password123 (Encrypted with bcrypt)`);
+      console.log("=============================================\n");
     }
 
   } catch (error) {
