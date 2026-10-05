@@ -1,0 +1,36 @@
+name: Next.js Boilerplate Codebase Verification CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Architecture Project Dependencies
+        run: npm ci
+
+      - name: Execute Static Lint Checks
+        run: npm run lint
+
+      - name: Build Next.js Codebase Verification Pipeline
+        run: npm run build
+        env:
+          # Mock environment string arguments injected to prevent Next.js static production 
+          # generation compilation phases from failing during build loops
+          MONGODB_URI: "mongodb+srv://mock:mock@cluster0.mongodb.net/test"
+          AUTH_SECRET: "mock_secret_string_parameter_long_enough_for_ci_build"
+          NEXTAUTH_URL: "http://localhost:3000"

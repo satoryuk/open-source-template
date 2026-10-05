@@ -56,7 +56,7 @@ export async function POST(req: Request) {
       { status: 201 }
     );
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("CRITICAL REGISTER API ERROR:", error);
     return NextResponse.json(
       { error: "An internal platform schema failure occurred." },
