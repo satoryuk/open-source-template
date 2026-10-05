@@ -16,7 +16,7 @@ export default function DashboardIndex() {
   const chartPoints = "10,90 40,75 70,80 100,50 130,45 160,60 190,30 220,25 250,15";
 
   return (
-    <div className="p-4 md:p-8 max-w-7xl mx-auto space-y-8 animate-in fade-in duration-300">
+    <div className="w-full px-4 sm:px-6 md:px-10 py-6 md:py-8 space-y-8 animate-in fade-in duration-300">
       
       {/* 1. Header Row */}
       <FadeUp>
@@ -79,7 +79,7 @@ export default function DashboardIndex() {
             
             {/* Embedded responsive custom vector line illustration */}
             <div className="w-full pt-4">
-              <svg viewBox="0 0 260 100" className="w-full h-40 md:h-56 text-emerald-500 overflow-visible drop-shadow-[0_0_15px_rgba(16,185,129,0.15)]">
+              <svg viewBox="0 0 260 100" preserveAspectRatio="none" className="w-full h-44 md:h-60 text-emerald-500 overflow-visible drop-shadow-[0_0_15px_rgba(16,185,129,0.15)]">
                 <defs>
                   <linearGradient id="chartGlow" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor="rgb(16,185,129)" stopOpacity="0.25"/>
