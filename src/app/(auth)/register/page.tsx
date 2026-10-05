@@ -5,11 +5,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { motion } from "framer-motion";
-import { User, Mail, Lock, ArrowRight, Loader2 } from "lucide-react";
+import { User, Mail, Lock, Eye, EyeOff, ArrowRight, Loader2 } from "lucide-react";
 
 export default function RegisterPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false); // Reactive password visibility hook state
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -19,7 +20,7 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      // 1. Post details directly to our newly created API handler
+      // 1. Post details directly to our cryptographically enabled API handler
       const res = await fetch("/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -116,13 +117,22 @@ export default function RegisterPage() {
                 <Lock size={16} />
               </span>
               <input 
-                type="password" 
+                type={showPassword ? "text" : "password"} // Updates text mask dynamically
                 placeholder="•••••••• (Min 6 chars)"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-10 pr-4 py-2.5 text-white focus:outline-none focus:border-emerald-500 transition-all text-sm" 
+                className="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-10 pr-12 py-2.5 text-white focus:outline-none focus:border-emerald-500 transition-all text-sm" 
                 required 
               />
+              {/* Eye toggle utility */}
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 flex items-center pr-3 text-zinc-500 hover:text-zinc-300 transition-colors"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+              </button>
             </div>
           </div>
 
