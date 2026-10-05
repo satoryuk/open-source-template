@@ -2,9 +2,11 @@ import NextAuth from "next-auth";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import CredentialsProvider from "next-auth/providers/credentials";
 import clientPromise from "@/lib/db";
-import bcrypt from "bcryptjs"; // Import crypto verification
+import bcrypt from "bcryptjs";
+import { authConfig } from "@/lib/auth.config";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  ...authConfig,
   adapter: MongoDBAdapter(clientPromise),
   providers: [
     CredentialsProvider({
@@ -32,14 +34,4 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
     })
   ],
-  pages: { signIn: "/login" },
-  session: { strategy: "jwt" },
-  callbacks: {
-    async session({ session, token }) {
-      if (token && session.user) {
-        session.user.id = token.sub as string;
-      }
-      return session;
-    },
-  },
 });
