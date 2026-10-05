@@ -1,26 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --primary: 142.1 76.2% 36.3%; /* Neon Glow Green tone reminiscent of Supabase */
+  --accent: 240 3.7% 15.9%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background-color: rgb(10, 10, 12);
+  color: rgb(240, 240, 245);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Background Grid Layer */
+.ambient-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Neon Blur Underlays */
+.glow-radial {
+  background: radial-gradient(circle 600px at 50% 200px, rgba(5, 200, 120, 0.12), transparent 80%);
 }
